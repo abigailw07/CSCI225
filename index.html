@@ -27,8 +27,13 @@
         <p>Welcome to my official course homepage for CSCI225. 
             I am a sophmore Cyber Security major. I enjoy reading 
             and playing video games. I am excited to learn about 
-            web development.</p>
+            web development.
+        </p>
+        <!--Tag 1: <figure> and <figcaption>-->
+        <figure>
             <img src= "img/IMG_5987.jpeg" alt="A profile picture of choice" width ="300">
+            <figcaption>A profile photo for my homepage.</figcaption>
+        </figure>
         </section>
         
         <!-- Portfolio Section -->
@@ -36,7 +41,10 @@
             <h2>Portfolio</h2>
             <ul>
                 <li>
-                   <strong>Intro to Computer Science Final Exam:</strong>
+                   <strong>Intro to Comp. Sci. Final Exam:</strong> Created an interactive RPG game.
+                </li>
+                <li>
+                    <strong>Interest Calculater:</strong> Created a program that calculates interest based on bank information.
                 </li>
             </ul>
             <p></p>
@@ -47,7 +55,7 @@
             <h2>Schedule</h2>
             <table border="1">
                 <caption>Weekly Class Schedule</caption>
-                <thread>
+                <thead>
                     <tr>
                         <th>Time</th>
                         <th>Monday</th>
@@ -56,7 +64,7 @@
                         <th>Thursday</th>
                         <th>Friday</th>
                     </tr>
-                </thread>
+                </thead>
                 <tbody>
                     <tr>
                         <td><time datetime="10:00">10:00 AM - 11:15 AM</time></td>
@@ -117,7 +125,7 @@
      <!-- Footer area -- contact information-->
       <footer>
         <section>
-            <p>Contact Information</p>
+            <p><b>Contact Information</b></p>
             <address>
                 Email: <a href="mailto:aw215@usca.edu">aw215@usca.edu</a><br>
                 University Campus Office: Penland Building
@@ -125,7 +133,11 @@
         </section>
 
         <section>
-            <p>&copy; 2026 Abigail Westbrook. All Rights Reserved.</p>
+             <!--Tag 2: <small>
+            Tag 3: <time>-->
+            <p>
+                <small>&copy; <time datetime="2026">2026</time>Abigail Westbrook. All rights reserved.</small>
+            </p>
             <p>Press <kbd>Ctrl</kbd> + <kbd>D</kbd> to bookmark this homepage.</p>
         </section>
       </footer>
