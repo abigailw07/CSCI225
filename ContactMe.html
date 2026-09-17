@@ -10,10 +10,7 @@
 
     <!-- Embedded Video-->
      <div>
-        <video width="480" controls>
-            <source src="myvideo.mp4" type="video/mp4">
-            Your browser does not support the video tag
-        </video>
+       <iframe width="560" height="315" src="https://www.youtube.com/embed/qmz05eP0mF8?si=l52iDSQpm2F_Q9Dk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
      </div>
 
      <hr>
@@ -22,11 +19,11 @@
       <form name="feedback" action="#" method="post">
         <!-- First Name -->
         <label for="fname">First Name:</label>
-        <input type="text" id="fname" name="fname" placeholder="anonymous" required><br><br>
+        <input type="text" id="fname" name="fname" placeholder="Anonymous" required><br><br>
 
         <!-- Last Name -->
         <label for="lname">Last Name:</label>
-        <input type="text" id="lname" name="lname" placeholder="anonymous" required><br><br>
+        <input type="text" id="lname" name="lname" placeholder="Anonymous" required><br><br>
 
         <!-- Email -->
         <label for="mail">Email Address:</label>
@@ -50,7 +47,7 @@
         
         <!-- Rating Range Element-->
         <lable for="rating">Rate this website (1 to 10):</lable>
-        <input type="number" min="0" max="10" name="rating"><br><br>
+        <input type="range" min="0" max="10" name="rating"><br><br>
 
         <!-- Additional Comments -->
         <label for="rating">Additional Comments:</label><br>
