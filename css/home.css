@@ -1,0 +1,50 @@
+#introduction-section{display: none;}
+#portfolio-section{display: none;}
+#schedule-section{display: none;}
+#assignment-sidebar{display: none;}
+#contact-section{display: none;}
+
+body{
+    background: url("../img/as3background.jpeg");
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+header {
+    background-color: #ff9900;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    z-index: 10;
+}
+
+header h1 {
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.nav-list {
+    list-style: none;
+}
+
+.nav-list li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.nav-list a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.nav-list a:hover {
+    text-decoration: underline;
+}
