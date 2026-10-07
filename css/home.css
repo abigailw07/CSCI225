@@ -1,59 +1,184 @@
-#introduction-section{position: fixed; top: 20; left: 10; z-index: 1000; border: 2px dotted black;}
-#portfolio-section{position: fixed; top: 38px; right: 10px; z-index: 1000; border: 2px dotted black;}
-#schedule-section{position: fixed; bottom: 20px; right: 10px; z-index: 1000; border: 2px dotted black;}
-#assignment-sidebar{position: fixed; bottom: 0; left: 0; z-index: 1000; border: 2px dotted black; width: 250px; height: 150px;}
-#contact-section{display: none;}
-
+/* Font: web font and font weight */
+/* Place a background image to the body */
 body{
     background: url("../img/as3background.jpeg");
     background-size: cover;
     height: 100vh;
     display: flex;
     flex-direction: column;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    /*
+    display: grid;
+    grid-template-columns: repeat(3, 300px);
+    grid-template-rows: repeat(3, 200px);
+    gap: 10px;
+    height: 100vh;
+    */
+}
+
+main, aside, footer {
+    display: grid;
+    grid-template-columns: repeat(3, 400px);
+    grid-template-rows: repeat(3, 300px);
+    gap: 0px;
+    height: 100vh;
+}
+
+#introduction-section {
+    grid-column: 1/2;
+    grid-row: 1/2;
+    width: 400px;
+    height: 200px;
+}
+
+#portfolio-section {
+    grid-column: 3/4;
+    grid-row: 1/2;
+    width: 400px;
+    height: 200px;
+}
+
+#schedule-section {
+    grid-column: 3/4;
+    grid-row: 2/3;
+    width: 20;
+    height: 20;
+}
+
+#assignment-sidebar {
+    grid-column: 2/3;
+    grid-row: 1/2;
+    width: 20;
+    height: 20;
+}
+
+#contact-section {
+    grid-column: 2/3;
+    grid-row: 2/3;
+}
+
+/* Set line height and text align */
+p {
+    line-height: 1.5;
+    text-align: center;
+}
+
+/* Text transform all elements to uppoercase and letter spacing */
+/* Apply text shadow */
+h2 {
+    font-size: 2em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Set text-decoration to none */
+/* Apply special style to all links. */
+a {
+    text-decoration: none;
+    color: black;
+    font-weight: 400;
+}
+
+a:hover {
+    color: #ff9900;
+    text-decoration: underline;
+    text-decoration-style: wavy;
+}
+
+/* Display nav list in one line. */
+nav ul {
+    display: flex;
+    gap: 30px;
+    padding-left: 20px;
+    list-style: none;
+    text-align: center;
+    justify-content: center;
+}
+
+/* Specify an image as the list-item marker in a list. */
+
+/* Add rounded corner borders */
+/* Style even rows of a table with a background color */
+table {
+    border-collapse: seperate;
+    empty-cells: hide;
+    border-spacing: 8px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
     overflow: hidden;
 }
 
-nav {
-    list-style: none;
-    text-align: center;
+th, td {
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    padding: 10px;
+    vertical-align: middle;
+}
+th:last-child, td:last-child {
+    border-right: 0;
+}
+tr:last-child td {
+    border-bottom: 0;
+}
+tr:nth-child(even) {
+    background-color: #ff990080;
 }
 
-nav li {
-    display: flex;
-    margin-left: 5px;
-    text-align: center;
+/* Give special style to first letter of all paragraphs */
+p::first-letter {
+    font-size: 2rem;
+    color: #ff9900;
+    line-height: 1;
 }
 
-nav a {
-    color: #ffffff;
-    text-decoration: none;
-    font-weight: 400;
-    font-size: 13px;
+/* Create box shadow for first paragraph in portfolio section */
+.portfolio-section p {
+    box-shadow: -25px -25px 50px black;
+    padding: 15px;
+    border-radius: 4px;
 }
 
-nav a:hover {
-    text-decoration: underline;
+figure {
+    display: none;
 }
+
+
+
+
+/*
+#introduction-section{position: fixed; top: 20; left: 10; z-index: 1000; border: 2px dotted black;}
+#portfolio-section{position: fixed; top: 40px; right: 10px; z-index: 1000; border: 2px dotted black;}
+#schedule-section{position: fixed; bottom: 20px; right: 10px; z-index: 1000; border: 2px dotted black;}
+#assignment-sidebar{position: fixed; bottom: 0; left: 10; z-index: 1000; border: 2px dotted black; width: 384px; height: 330px;}
+#contact-section{position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); border: 2px dotted black; height: 125px;}
+#copyright-area{display: none;}
 
 header {
     background-color: #ff9900;
     margin-top: -1%;
     margin-left: -1%;
     padding: 10px 40px;
-    display: flex;
     justify-content: space-between;
-    /*align-items: center;*/
+    align-items: center;
     text-align: center;
     width: 100%;
     height: 12px;
     z-index: 10;
 }
 
+ul {
+    color: black;
+    font-weight: 400;
+}
+
 header h2 {
     display: none;
 }
 
-ul {
+nav ul {
     text-align: center;
     padding: 0;
     margin: 0;
@@ -67,11 +192,47 @@ figure{
     display: none;
 }
 
+table {
+    display: none;
+    border: 0;
+    padding: 0;
+    vertical-align: 0;
+    empty-cells: 0;
+}
+
 section {
     width: 30%;
     height: 300px;
 }
 
-h2, p {
+h2 {
     text-align: center;
 }
+
+a {
+    text-decoration: none;
+    color: #ff9900;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #ff9900;
+    text-decoration: underline;
+}
+
+p {
+    line-height: 1.5;
+    text-align: center;
+}
+
+h2 {
+    font-size: 2em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+address {
+    text-align: center;
+}
+*/

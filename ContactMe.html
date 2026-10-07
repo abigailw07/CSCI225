@@ -3,75 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <title>Contact Me - Feedback</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
+
 <body>
+    <div class="container"></div>
+        <header class="row">
+        <h1 class="collapse">Welcome to My Feedback Page</h1>
+            <nav class="col navbar bg-dark text-white -bs"> 
+                <ul class="nav">
+                    <li class="nav-item"><a class="nav-link" href= "https://usca.edu" target="_blank">USCA Official Website</a></li>
+                    <li class="nav-item"><a class="nav-link" href= "https://github.com/abigailw07/CSCI225" target="_blank">My Github Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" href= "#assignment-sidebar">Assignment Section</a></li>
+                    <li class="nav-item"><a class="nav-link" href= "#schedule-section">Schedule Section</a></li>
+                    <li class="nav-item"><a class="nav-link" href= "#portfolio-section">Portfolio Section</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
 
-    <h1>Welcome to My Feedback Page</h1>
+    <main class="row">
+        <section class="col describe-video" id="describe-video-section">
+        <h2 class="collapse">Video:</h2>
+        <div>
+            <video width="640" height="360" controls>
+                <source src="video/embedvideo1.mp4" type="video/mp4">
+            </video>
+        </div>
+        </section>
 
-    <!-- Embedded Video-->
-     <div>
-        <video width="640" height="360" controls>
-            <source src="video/embedvideo1.mp4" type="video/mp4">
-        </video>
-     </div>
+        <section class="Feedback col" id="Feedback-form">
+        <form name="feedback" action="#" method="post">
+            <h2 class="collapse">Feedback Form:</h2>
+            <!-- First Name -->
+            <div class="form-floating mb-3">
+                <input type="text" id="fname" class="form-control" name="fname" placeholder="Anonymous" required><br><br>
+                <label for="fname">First Name:</label>
+            </div>
 
-     <hr>
+            <!-- Last Name -->
+            <div class="form-floating mb-3">
+                <input type="text" id="lname" class="form-control" name="lname" placeholder="Anonymous" required><br><br>
+                <label for="lname">Last Name:</label>
+            </div>
 
-     <!-- Feedback Form-->
-      <form name="feedback" action="#" method="post">
-        <!-- First Name -->
-        <label for="fname">First Name:</label>
-        <input type="text" id="fname" name="fname" placeholder="Anonymous" required><br><br>
+            <!-- Email -->
+            <div class="form-floating mb-3">
+                <input type="email" id="mail" class="form-control" name="mail" placeholder="name@usca.edu" required><br><br>
+                <label for="mail">Email Address:</label>
+            </div>
 
-        <!-- Last Name -->
-        <label for="lname">Last Name:</label>
-        <input type="text" id="lname" name="lname" placeholder="Anonymous" required><br><br>
+            <!-- Recomendation Radio Buttons-->
+            <label>Would you recommend this website?</label><br>
+            <input type="radio" id="rec_yes" name="recommend" value="yes">
+            <label for="rec_yes">Yes</label>
+            <input type="radio" id="rec_no" name="recommend" value="no">
+            <label for="rec_no">No</label><br><br>
 
-        <!-- Email -->
-        <label for="mail">Email Address:</label>
-        <input type="email" id="mail" name="mail" placeholder="name@usca.edu" required><br><br>
-
-        <!-- Recomendation Radio Buttons-->
-        <label>Would you recommend this website?</label><br>
-        <input type="radio" id="rec_yes" name="recommend" value="yes">
-        <label for="rec_yes">Yes</label>
-        <input type="radio" id="rec_no" name="recommend" value="no">
-        <label for="rec_no">No</label><br><br>
-
-        <!-- Favorite Website Selection Box-->
-        <label for="favsite">Favorite Website:</label>
-        <select id="favsite" name="favsite">
-            <option value="Google">Google</option>
-            <option value="Facebook">Facebook</option>
-            <option value="Twitter">Twitter</option>
-            <option value="Time">Time</option>
-        </select><br><br>
+            <!-- Favorite Website Selection Box-->
+            <label for="favsite">Favorite Website:</label>
+            <select id="favsite" name="favsite" class="form-select">
+                <option value="Google">Google</option>
+                <option value="Facebook">Facebook</option>
+                <option value="Twitter">Twitter</option>
+                <option value="Time">Time</option>
+            </select><br><br>
         
-        <!-- Rating Range Element-->
-        <label for="rating">Rate this website (1 to 10):</label>
-        <input type="range" min="0" max="10" name="rating" id="rating"><br><br>
+            <!-- Rating Range Element-->
+            <label for="rating">Rate this website (1 to 10):</label>
+            <input type="range" min="0" max="10" name="rating" id="rating"><br><br>
 
-        <!-- Additional Comments -->
-        <label for="comment">Additional Comments:</label><br>
-        <textarea id="comment" name="comment" rows="4" cols="40"></textarea><br><br>
+            <!-- Additional Comments -->
+            <label for="comment">Additional Comments:</label><br>
+            <textarea id="comment" name="comment" rows="4" cols="40"></textarea><br><br>
         
-        <!-- At least 3 additional HTML5 form features -->
-        <!-- Feature 1: Date Input -->
-        <label for="visitdate">Date of Visit:</label>
-        <input type="date" id="visitdate" name="visitdate"><br><br>
+            <!-- At least 3 additional HTML5 form features -->
+            <!-- Feature 1: Date Input -->
+            <label for="visitdate">Date of Visit:</label>
+            <input type="date" id="visitdate" name="visitdate"><br><br>
 
-        <!-- Feature 2: Color Picker-->
-        <label for="favcolor">Favoite Color:</label>
-        <input type="color" id="favcolor" name="favcolor"><br><br>
+            <!-- Feature 2: Color Picker-->
+            <label for="favcolor">Favoite Color:</label>
+            <input type="color" id="favcolor" name="favcolor"><br><br>
 
-        <!-- Feature 3: Number Input with min/max -->
-        <label for="age">Your age:</label>
-        <input type="number" id="age" name="age" min="1" max="120"><br><br>
+            <!-- Feature 3: Number Input with min/max -->
+            <label for="age">Your age:</label>
+            <input type="number" id="age" name="age" min="1" max="120"><br><br>
 
-        <!-- Submit Button -->
-        <input type="submit" value="Submit Feedback">
+            <!-- Submit Button -->
+            <input type="submit" value="Submit Feedback">
+        </form>
+        </section>
+    </main>
+    </div>
 
-      </form>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 
 </html>
