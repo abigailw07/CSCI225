@@ -8,13 +8,13 @@ body{
     flex-direction: column;
     font-family: "Montserrat", sans-serif;
     font-weight: 400;
-    /*
-    display: grid;
-    grid-template-columns: repeat(3, 300px);
-    grid-template-rows: repeat(3, 200px);
-    gap: 10px;
-    height: 100vh;
-    */
+}
+
+.blue-line {
+    width: 100%;
+    height: 5px;
+    background-color: lightskyblue;
+    margin-bottom: 8px;
 }
 
 header{
@@ -31,47 +31,45 @@ nav ul {
     display: flex;
     gap: 30px;
     padding-left: 20px;
+    text-decoration: none;
     list-style: none;
     text-align: center;
     justify-content: center;
 }
-/*
-main, footer {
-    display: grid;
-    grid-template-columns: repeat(3, 400px);
-    grid-template-rows: repeat(3, 300px);
-    gap: 0px;
-    height: 100vh;
+
+nav a {
+    text-decoration: none;
+    color: black;
+    font-family: "Montserrat", sans-serif;
+
 }
-*/
-main, footer {
+
+main {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 3fr, 2fr, 2fr, 11fr, 3fr;
-    /*
-    grid-template-columns: repeat(3, 400px);
-    grid-template-rows: repeat(6, 110px); */
+    grid-template-columns: repeat(3, 2fr);
+    grid-template-rows: 270px 200px 0px 100px;
+    padding-top: 32px;
     gap: 0px;
     height: 100vh;
 }
 
 #introduction-section {
     grid-column: 1/2;
-    grid-row: 2/3;
+    grid-row: 1/2;
     width: 400px;
     height: 200px;
 }
 
 #portfolio-section {
     grid-column: 3/4;
-    grid-row: 2/3;
+    grid-row: 1/2;
     width: 400px;
     height: 200px;
 }
 
 #schedule-section {
     grid-column: 3/4;
-    grid-row: 3/4;
+    grid-row: 2/3;
     width: 400px;
     height: 200px;
 }
@@ -83,9 +81,9 @@ h2:hover + table{
 
 #assignment-section {
     grid-column: 1/2;
-    grid-row: 3/4;
-    width: 400px;
-    height: 200px;
+    grid-row: 2/3;
+    /*width: 400px;
+    height: 200px;*/
 }
 
 #assignment-section ul {
@@ -95,56 +93,11 @@ h2:hover + table{
 
 #contact-section {
     grid-column: 2/3;
-    grid-row: 5/6;
+    grid-row: 4/5;
     width: 400px;
     height: 100px;
 }
 
-
-/*
-#introduction-section {
-    grid-column: 1/2;
-    grid-row: 1/2;
-    width: 400px;
-    height: 200px;
-}
-
-#portfolio-section {
-    grid-column: 3/4;
-    grid-row: 1/2;
-    width: 400px;
-    height: 200px;
-}
-
-#schedule-section {
-    grid-column: 3/4;
-    grid-row: 2/3;
-    width: 400px;
-    height: 200px;
-}
-
-h2:hover + table{
-    opacity: 1;
-}
-
-#assignment-section {
-    grid-column: 1/3;
-    grid-row: 2/3;
-    width: 400px;
-    height: 200px;
-}
-
-#assignment-section ul {
-    text-align: center;
-}
-
-#contact-section {
-    grid-column: 2/3;
-    grid-row: 2/3;
-    width: 400px;
-    height: 100px;
-}
-*/
 /* Set line height and text align */
 p {
     line-height: 1.5;
@@ -179,10 +132,6 @@ h2:hover + address{
     opacity: 1;
 }
 
-#copyright-area{
-    display: none;
-}
-
 /* Text transform all elements to uppoercase and letter spacing */
 /* Apply text shadow */
 h2 {
@@ -198,7 +147,6 @@ h2 {
 a {
     text-decoration: none;
     color: black;
-    font-weight: 400;
 }
 
 a:hover {
@@ -214,12 +162,13 @@ a:hover {
 table {
     empty-cells: hide;
     border-spacing: 8px;
-    font-size: 12px;
+    font-size: 10px;
     width: 100px;
-    border: 2px solid #ccc;
+    border: 2px solid black;
     border-radius: 5px;
     overflow: hidden;
-    transform: translate(-90%, -60%);
+    transform: scale(0.2);
+    transform: translate(-98%, -65%);
     background-color: white;
     opacity: 0;
     transition: opacity 2s ease-in-out, visibility 3s ease-in-out;
@@ -262,37 +211,36 @@ figure {
     display: none;
 }
 
-
-
-
-/*
-#introduction-section{position: fixed; top: 20; left: 10; z-index: 1000; border: 2px dotted black;}
-#portfolio-section{position: fixed; top: 40px; right: 10px; z-index: 1000; border: 2px dotted black;}
-#schedule-section{position: fixed; bottom: 20px; right: 10px; z-index: 1000; border: 2px dotted black;}
-#assignment-sidebar{position: fixed; bottom: 0; left: 10; z-index: 1000; border: 2px dotted black; width: 384px; height: 330px;}
-#contact-section{position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); border: 2px dotted black; height: 125px;}
-#copyright-area{display: none;}
-
-header {
-    background-color: #ff9900;
-    margin-top: -1%;
-    margin-left: -1%;
-    padding: 10px 40px;
-    justify-content: space-between;
-    align-items: center;
-    text-align: center;
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
     width: 100%;
-    height: 12px;
-    z-index: 10;
+    height: 30px;
+    background-color: #ff9900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    overflow: hidden;
+    animation: nameSlide 10s linear infinite;
+
 }
 
-nav ul {
-    text-align: center;
-    padding: 0;
-    margin: 0;
-    gap: 15px;
-    display: flex;
-    list-style: none;
-    justify-content: center;
+footer p {
+    color: black;
+    opacity: 1;
 }
-*/
+
+@keyframes nameSlide {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(300px);
+    }
+    /*
+    0% {transform: translateX(-220px);}
+    50% {transform: translateX(0);}
+    100% {transform: translateX(220px);} */
+}
