@@ -223,9 +223,20 @@ footer {
     justify-content: center;
     z-index: 1000;
     overflow: hidden;
-    animation: nameSlide 10s linear infinite;
-
+    /*animation: nameSlide 10s linear infinite;*/
 }
+
+.copyright-section p {
+    display: inline-block; 
+    position: relative;
+    opacity: 1 !important; 
+    position: relative;
+    color: black;
+    font-size: 12px;
+    font-weight: 400;
+    animation: nameSlide 10s linear infinite;
+}
+
 
 footer p {
     color: black;
