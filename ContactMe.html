@@ -11,7 +11,7 @@
         <header class="row">
         <h1 class="collapse">Welcome to My Feedback Page</h1>
             <nav class="col navbar bg-dark text-white -bs"> 
-                <ul class="nav">
+                <ul class="nav fw-bold">
                     <li class="nav-item"><a class="nav-link" href= "https://usca.edu" target="_blank">USCA Official Website</a></li>
                     <li class="nav-item"><a class="nav-link" href= "https://github.com/abigailw07/CSCI225" target="_blank">My Github Profile</a></li>
                     <li class="nav-item"><a class="nav-link" href= "#assignment-sidebar">Assignment Section</a></li>
@@ -26,7 +26,7 @@
         <section class="col describe-video" id="describe-video-section">
         <h2 class="collapse">Video:</h2>
         <div>
-            <video width="640" height="360" controls>
+            <video width="640" height="360" controls class="border border-primary border-2 rounded">
                 <source src="video/embedvideo1.mp4" type="video/mp4">
             </video>
         </div>
@@ -55,40 +55,57 @@
 
             <!-- Recomendation Radio Buttons-->
             <label>Would you recommend this website?</label><br>
-            <input type="radio" id="rec_yes" name="recommend" value="yes">
-            <label for="rec_yes">Yes</label>
-            <input type="radio" id="rec_no" name="recommend" value="no">
-            <label for="rec_no">No</label><br><br>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="rec_yes" name="recommend" value="yes">
+                <label for="rec_yes">Yes</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="rec_no" name="recommend" value="no">
+                <label for="rec_no">No</label><br><br>
+            </div>
 
             <!-- Favorite Website Selection Box-->
-            <label for="favsite">Favorite Website:</label>
-            <select id="favsite" name="favsite" class="form-select">
-                <option value="Google">Google</option>
-                <option value="Facebook">Facebook</option>
-                <option value="Twitter">Twitter</option>
-                <option value="Time">Time</option>
-            </select><br><br>
-        
+            <div>
+                <label for="favsite">Favorite Website:</label>
+                <select id="favsite" name="favsite" class="form-select">
+                    <option value="Google">Google</option>
+                    <option value="Facebook">Facebook</option>
+                    <option value="Twitter">Twitter</option>
+                    <option value="Instagram">Instagram</option>
+                </select><br><br>
+            </div>
+
             <!-- Rating Range Element-->
-            <label for="rating">Rate this website (1 to 10):</label>
-            <input type="range" min="0" max="10" name="rating" id="rating"><br><br>
+            <div>
+                <label for="rating" class="form-label">Rate this website (1 to 10):</label>
+                <input type="range" class="form-range" min="0" max="10" id="rating"><br><br>
+            </div>
 
             <!-- Additional Comments -->
-            <label for="comment">Additional Comments:</label><br>
-            <textarea id="comment" name="comment" rows="4" cols="40"></textarea><br><br>
-        
+             <small class="form-text text-muted">aw215@usca.edu</small>
+            <div class="form-floating">
+                <textarea class="form-control" id="floatingTextarea" placeholder="Leave a comment here" style="height: 100px"></textarea><br><br>
+                <label for="floatingTextarea">Comments</label>
+            </div>
+
             <!-- At least 3 additional HTML5 form features -->
             <!-- Feature 1: Date Input -->
-            <label for="visitdate">Date of Visit:</label>
-            <input type="date" id="visitdate" name="visitdate"><br><br>
+            <div class="mb-3">
+                <label for="dateInput" class="form-label">Date of Visit:</label>
+                <input type="date" id="dateInput" class="form-control"><br><br>
+            </div>
 
             <!-- Feature 2: Color Picker-->
-            <label for="favcolor">Favoite Color:</label>
-            <input type="color" id="favcolor" name="favcolor"><br><br>
+            <div>
+                <label for="favcolor" class="form-label">Favoite Color:</label>
+                <input type="color" class="form-control form-control-color" id="favcolor"><br><br>
+            </div>
 
             <!-- Feature 3: Number Input with min/max -->
-            <label for="age">Your age:</label>
-            <input type="number" id="age" name="age" min="1" max="120"><br><br>
+            <div class="mb-3">
+                <label for="age" class="form-label">Your age:</label>
+                <input type="number" class="form-control" id="age" min="1" max="120"><br><br>
+            </div>
 
             <!-- Submit Button -->
             <input type="submit" value="Submit Feedback">
