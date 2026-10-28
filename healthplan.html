@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Health Plan - BMI and Calorie Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #27ae60;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #219653;
+        }
+        .results {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e8f8f5;
+            border-left: 5px solid #27ae60;
+            border-radius: 4px;
+        }
+        .visual-container {
+            text-align: center;
+            margin-top: 20px;
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+         #person-img {
+            width: 100px;
+            height: 200px;
+            transition: width 0.5s ease, height 0.5s ease;
+            background-color: #34495e;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        .explanation {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>BMI and Calorie Calculator</h2>
+
+        <div class="form-group">
+            <label for="weight">Weight (kg):</label>
+            <input type="number" id="weight" placeholder="e.g., 70" min="1" step="any">
+        </div>
+        <div class="form-group">
+            <label for="height">Height (cm):</label>
+            <input type="number" id="height" placeholder="e.g., 175" min="1" step="any">
+        </div>
+        <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="number" id="age" placeholder="e.g., 30" min="1">
+        </div>
+
+        <div class="form-group">
+            <label for="gender">Gender:</label>
+            <select id="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+
+        <button id="calc-btn">Generate Meal PLan</button>
+
+        <div id="results-box" class="results" style="display:none;">
+            <h3>Your Report</h3>
+            <p><strong>BMI:</strong> <span id="bmi-result">0.00</span></p>
+            <p><strong>Calorie Target:</strong> <span id="calorie-result">0</span></p>
+
+            <h4>Suggested Meal Plan</h4>
+            <ul id="meal-list"></ul>
+            <p><strong>Total Meal Plan Calories:</strong> <span id="total-meal-calories">0</span> calories</p>
+        </div>
+
+        <div class="visual-container">
+            <div id="person-img"></div>
+        </div>
+        <!--
+        <div class="explanation">
+            <h3>Explanation</h3>
+            <p id="logic-text">
+                To generate the meal plan, the application uses a randomized greedy selection loop. 
+                First, it creates a shallow copy of the food database and shuffles it randomly using a standard 
+                loop so that consecutive calculations yield a brand-new set of food choices. 
+                Then, a traditional <code>for</code> loop iterates through this randomized pool of items one by one. 
+                Inside the loop, an <code>if</code> statement checks whether adding the current food's calories to 
+                the running total keeps the aggregate below or equal to the target calorie count. 
+                If it fits, the food is added to the meal plan, and its calories are added to the running total. 
+                If it does not fit, the item is skipped. This process ensures the maximum number of items fit as 
+                close to the limit as possible without ever exceeding it.
+            </p>
+        </div>
+        -->
+    </div>
+
+    <script>
+        const foodDatabase = [
+            { name: "Apple (1 medium)", cal: 95 },
+            { name: "Banana (1 medium)", cal: 105 },
+            { name: "Orange (1 medium)", cal: 62 },
+            { name: "Grapes (1 cup)", cal: 104 },
+            { name: "Strawberries (1 cup)", cal: 49 },
+            { name: "Broccoli (1 cup)", cal: 55 },
+            { name: "Carrots (1 cup)", cal: 52 },
+            { name: "Spinach (1 cup)", cal: 7 },
+            { name: "Potato (1 medium)", cal: 161 },
+            { name: "Sweet Potato (1 medium)", cal: 103 },
+            { name: "Avocado (half)", cal: 117 },
+            { name: "Chicken Breast (4oz)", cal: 165 },
+            { name: "Salmon (4oz)", cal: 235 },
+            { name: "Ground Beef 80/20 (4oz)", cal: 287 },
+            { name: "Egg (1 large)", cal: 72 },
+            { name: "Tofu (1/2 cup)", cal: 94 },
+            { name: "Black Beans (1/2 cup)", cal: 114 },
+            { name: "Lentils (1/2 cup)", cal: 115 },
+            { name: "Plain Greek Yogurt (1 cup)", cal: 100 },
+            { name: "Almonds (1 oz)", cal: 164 },
+            { name: "Peanuts (1 oz)", cal: 161 },
+            { name: "Peanut Butter (2 tbsp)", cal: 188 },
+            { name: "Brown Rice (1 cup cooked)", cal: 216 },
+            { name: "White Rice (1 cup cooked)", cal: 205 },
+            { name: "Quinoa (1 cup cooked)", cal: 222 },
+            { name: "Oats (1/2 cup dry)", cal: 150 },
+            { name: "Whole Wheat Bread (1 slice)", cal: 69 },
+            { name: "White Bread (1 slice)", cal: 75 },
+            { name: "Pasta (1 cup cooked)", cal: 220 },
+            { name: "Bagel (1 medium)", cal: 245 },
+            { name: "Flour Tortilla (8 inch)", cal: 144 },
+            { name: "Vanilla Ice Cream (1/2 cup)", cal: 137 },
+            { name: "Chocolate Chip Cookie (1 medium)", cal: 148 },
+            { name: "Potato Chips (1 oz)", cal: 152 },
+            { name: "Pretzels (1 oz)", cal: 108 },
+            { name: "Cheddar Cheese (1 oz)", cal: 113 },
+            { name: "Butter (1 tbsp)", cal: 102 },
+            { name: "Olive Oil (1 tbsp)", cal: 119 },
+            { name: "Whole Milk (1 cup)", cal: 149 },
+            { name: "Almond Milk (1 cup)", cal: 39 },
+            { name: "Orange Juice (1 cup)", cal: 112 },
+            { name: "Cola (12 oz)", cal: 140 },
+            { name: "Black Coffee (8 oz)", cal: 2 },
+            { name: "Bacon (2 slices)", cal: 86 },
+            { name: "Pork Sausage (1 link)", cal: 133 },
+            { name: "Pancakes (2 medium)", cal: 172 },
+            { name: "Waffle (1 large)", cal: 218 },
+            { name: "Honey (1 tbsp)", cal: 64 },
+            { name: "Maple Syrup (1 tbsp)", cal: 52 },
+            { name: "Cheese Pizza (1 slice)", cal: 285 }
+        ];
+
+        var calcButton = document.getElementById("calc-btn");
+
+        calcButton.addEventListener("click", function() {
+            var weight = parseFloat(document.getElementById("weight").value);
+            var height = parseFloat(document.getElementById("height").value);
+            var age = parseInt(document.getElementById("age").value);
+            var gender = document.getElementById("gender").value;
+
+            // Example calculation (BMI)
+            var bmi = weight / Math.pow((height / 100), 2);
+            var basicCalories = 0;
+
+            if (gender === "Men") {
+                basicCalories = (10 * weight) + (6.25 * height) - (5 * age) + 5;
+            } else if (gender === "Women") {
+                basicCalories = (10 * weight) + (6.25 * height) - (5 * age) - 161;
+            }
+
+            var calorieTarget = 0;
+            if (bmi >= 30.0) {
+                calorieTarget = basicCalories - 750;
+            } else if (bmi >= 25.0 && bmi < 30.0){
+                calorieTarget = basicCalories - 500;
+            } else if (bmi < 25.0) {
+                calorieTarget = basicCalories;
+            }
+
+            // Display
+            document.getElementById("bmi-result").textContent = "Your BMI is: " + bmi.toFixed(2);
+            document.getElementById("calorie-result").textContent = "Your Calorie Target is: " + Math.round(calorieTarget);
+
+            var personImg = document.getElementById("person-img");
+            if (bmi < 18.5) {
+                personImg.style.width = "60px";
+                personImg.style.height = "210px";
+                personImg.style.backgroundColor = "#3498db";
+            } else if (bmi >= 18.5 && bmi < 25.0) {
+                personImg.style.width = "100px";
+                personImg.style.height = "200px";
+                personImg.style.backgroundColor = "#2ecc71";
+            } else if (bmi >= 25.0 && bmi < 30.0) {
+                personImg.style.width = "140px";
+                personImg.style.height = "190px";
+                personImg.style.backgroundColor = "#e67e22";
+            } else if (bmi >= 30.0) {
+                personImg.style.width = "180px";
+                personImg.style.height = "180px";
+                personImg.style.backgroundColor = "#e74c3c";
+            }
+
+            var shuffledFoods = [];
+            for (var i = 0; i <foodDatabase.length; i++) {
+                shuffledFoods.push(foodDatabase[i]);
+            }
+
+            for (var j = shuffledFoods.length - 1; j > 0; j--) {
+                var randIndex = Math.floor(Math.random() * (j + 1));    
+                var temp = shuffledFoods[j];
+                shuffledFoods[j] = shuffledFoods[randIndex];
+                shuffledFoods[randIndex] = temp;
+            }
+
+            var selectedFoods = [];
+            var totalMealCals = 0;
+
+            for (var k = 0; k < shuffledFoods.length; k++) {
+                var currentFood = shuffledFoods[k];
+                if (totalMealCals + currentFood.cal <= calorieTarget) {
+                    selectedFoods.push(currentFood);
+                    totalMealCals += currentFood.cal;
+                } else if (totalMealCals + currentFood.cal> calorieTarget) {
+                    // Skips the current item safely because it would exceed the target
+                }
+            }
+            
+            var mealList = document.getElementById("meal-list");
+            mealList.innerHTML = "";
+            for (var m = 0; m < selectedFoods.length; m++) {
+                var li = document.createElement("li");
+                li.textContent = selectedFoods[m].name + " (" + selectedFoods[m].cal + " calories";
+                mealList.appendChild(li);
+            }
+
+            document.getElementById("total-meal-calories").textContent = "Total Calories: " + totalMealCals;
+            document.getElementById("results-box").textContent = "block";
+        
+        });
+    </script>
+
+</body>
+</html>
