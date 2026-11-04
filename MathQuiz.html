@@ -1,0 +1,102 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elementary Math Adventure</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">🔢 MathQuest</div>
+        <ul class="nav-links">
+            <li><a href="#" onclick="showPage('cover')">Home</a></li>
+            <li><a href="#" onclick="showPage('quizzes')">Quizzes</a></li>
+            <li><a href="#" onclick="showPage('about')">About Us</a></li>
+            <li><a href="#" onclick="showPage('signin')">Database Sign In</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="container">
+        
+        <!-- Cover Page Section -->
+        <section id="cover-page" class="page-section active">
+            <div class="hero">
+                <h1>Welcome to Elementary Math Adventure!</h1>
+                <p>Sharpen your mind with 10 exciting math categories. 7 questions each. Perfect for building confidence and mastery!</p>
+                <button class="btn btn-large" onclick="showPage('quizzes')">Start Learning Now 🚀</button>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about-page" class="page-section">
+            <h2>About Us</h2>
+            <p>Welcome to <strong>MathQuest</strong>, an interactive web ecosystem intentionally designed to make basic arithmetic arithmetic engaging and accessible for young learners. We believe foundational math shouldn't be intimidating—it should be an adventure.</p>
+            <p>Our curriculum spans 10 targeted domains, ensuring a balanced approach to numbers, operations, geometry, and simple algebraic logic.</p>
+        </section>
+
+        <!-- Database Sign In Section -->
+        <section id="signin-page" class="page-section">
+            <div class="form-container">
+                <h2>Teacher / Admin Database Login</h2>
+                <p class="form-subtitle">Front-end simulation connected to local validation logic</p>
+                <form id="login-form" onsubmit="handleSignIn(event)">
+                    <div class="form-group">
+                        <label for="username">Admin Username</label>
+                        <input type="text" id="username" placeholder="e.g., admin_teacher" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="btn">Connect to Database</button>
+                </form>
+                <div id="signin-feedback" class="feedback-msg"></div>
+            </div>
+        </section>
+
+        <!-- Quiz Categories Dashboard -->
+        <section id="quizzes-page" class="page-section">
+            <h2>Choose a Math Mission</h2>
+            <div class="quiz-grid" id="category-grid">
+                <!-- Injected via JavaScript -->
+            </div>
+        </section>
+
+        <!-- Quiz Gameplay Box -->
+        <section id="gameplay-page" class="page-section">
+            <div class="quiz-card">
+                <div class="quiz-header">
+                    <h2 id="current-quiz-title">Category Title</h2>
+                    <span id="progress-tracker">Question 1 of 7</span>
+                </div>
+                <div id="question-box">
+                    <p class="question-text" id="question-text">What is 5 + 3?</p>
+                    <div class="options-container" id="options-container">
+                        <!-- Options buttons injected here -->
+                    </div>
+                </div>
+                <button id="next-btn" class="btn hidden" onclick="advanceQuiz()">Next Question ➡️</button>
+            </div>
+        </section>
+
+        <!-- Score / Results Section -->
+        <section id="results-page" class="page-section">
+            <div class="results-card">
+                <h2>Mission Complete! 🎓</h2>
+                <div class="score-display">
+                    <span id="final-score">0</span> / 7
+                </div>
+                <p id="performance-msg">Great job striving for excellence!</p>
+                <button class="btn" onclick="showPage('quizzes')">Try Another Quiz</button>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
