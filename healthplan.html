@@ -171,7 +171,7 @@
             { name: "Cheese Pizza (1 slice)", cal: 285 }
         ];
 
-        // Helper metric formulas (BMI & Mifflin-St Jeor calculation)
+        // Metric formulas
         function calculateMetrics(weight, height, age, gender) {
             const heightM = height / 100;
             const bmi = (weight / (heightM * heightM)).toFixed(2);
@@ -183,15 +183,15 @@
                 bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161;
             }
 
-            // Baseline calorie target calculated using 1.2 multiplier for sedentary lifestyle
+            // Calorie target
             const calorieTarget = Math.round(bmr * 1.2);
 
             return { bmi, calorieTarget };
             }
 
-            // Optimization function that randomizes selection to get as close to target as possible without going over
+            // Randomized meal plan
             function selectMealPlan(calorieTarget, database) {
-            // Create a copy and shuffle the array to generate brand-new combinations on each click
+            // Create a copy and shuffle the array
             const shuffledFoods = [...database].sort(() => 0.5 - Math.random());
             
             let selectedFoods = [];
@@ -228,12 +228,12 @@
                 personImg.style.height = `${targetHeight}px`;
             }
 
-            // Visual layout adjustment helper for the #person-img box
+            // Visual layout 
             function updateVisualIndicator(bmi) {
             const personImg = document.getElementById('person-img');
             if (!personImg) return;
 
-            // Scale the box element depending on the calculated BMI
+            // Scale the box element depending on the BMI
             if (bmi < 18.5) {
                 personImg.style.width = '70px';
                 personImg.style.height = '200px';
@@ -249,7 +249,7 @@
             }
             }
 
-            // Click event listener tied directly to the Generate Meal Plan button
+            // Click event listener to the Generate Meal Plan button
             document.getElementById('calc-btn').addEventListener('click', () => {
             const weight = parseFloat(document.getElementById('weight').value);
             const height = parseFloat(document.getElementById('height').value);
