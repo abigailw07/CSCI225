@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Quiz - CSCI225 Project</title>
+    <link rel="stylesheet" href="css/quiz.css">
+</head>
+<body>
+    <!-- Navigation Bar (Hidden until login) -->
+    <nav class="navbar hidden" id="app-nav">
+        <div class="logo">🔢 MathQuest</div>
+        <ul class="nav-links">
+            <li><a href="#" onclick="showPage('cover')">Home</a></li>
+            <li><a href="#" onclick="showPage('diagnostic')">Master Diagnostic Quiz</a></li>
+            <li><a href="#" onclick="showPage('quizzes')">Missions Dashboard</a></li>
+            <li><a href="#" onclick="showPage('about')">About Us</a></li>
+            <li><a href="#" onclick="logout()">Log Out</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main App Container -->
+    <main class="container">
+        
+        <!-- 1. Database Sign In Screen (Appears First) -->
+        <section id="signin-page" class="page-section active">
+            <div class="card form-container pulse-animation">
+                <h2>Welcome to MathQuest!</h2>
+                <p class="form-subtitle">CSCI225 Arithmetic Quiz Database Gateway</p>
+                
+                <!-- Google Login Requirement -->
+                <button class="btn btn-google btn-full" onclick="handleAuth('Google User')">
+                    <img src="https://cloudflare.com" alt="" width="16"> Sign In with Google
+                </button>
+                
+                <div class="divider">or use standard portal</div>
+                
+                <form id="login-form" onsubmit="event.preventDefault(); handleAuth(document.getElementById('username').value);">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" placeholder="Enter username..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter password..." required>
+                    </div>
+                    <button type="submit" class="btn btn-full">Sign In</button>
+                </form>
+
+                <div class="divider">or explore</div>
+                <button class="btn btn-guest btn-full" onclick="handleAuth('Guest Student')">Guest Sign In</button>
+            </div>
+        </section>
+
+        <!-- 2. Project Cover Page Section -->
+        <section id="cover-page" class="page-section">
+            <div class="card hero slide-up">
+                <span class="badge">Project Code: CSCI225</span>
+                <h1>Math Quiz Platform</h1>
+                <p class="desc">A dynamic, web-based arithmetic quiz platform designed intentionally for elementary school students to track, practice, and master essential arithmetic skills.</p>
+                
+                <div class="action-zone">
+                    <button class="btn btn-large bounce-hover" onclick="showPage('diagnostic')">Take Master Diagnostic Quiz 🎯</button>
+                    <button class="btn btn-secondary btn-large" onclick="showPage('quizzes')">Browse 10 Quiz Modules 📚</button>
+                </div>
+
+                <!-- Rubric Criteria: Team Information Grid -->
+                <div class="team-grid">
+                    <h3>Project Developers</h3>
+                    <div class="team-flex">
+                        <div class="member-card">
+                            <strong>Abby</strong> <span class="role-tag">Project Leader</span>
+                            <p>aw215@usca.edu</p>
+                        </div>
+                        <div class="member-card">
+                            <strong>Johnnie</strong> <span class="role-tag">Developer</span>
+                            <p>jld29@usca.edu</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rubric Criteria: Bug Report Mechanism -->
+                <div class="bug-container">
+                    <h3>🐛 Found a Bug? File a Report</h3>
+                    <form id="bug-form" onsubmit="submitBug(event)">
+                        <input type="text" placeholder="Where did you find the issue? (e.g., Geometry Timer)" required id="bug-loc">
+                        <textarea placeholder="Describe what went wrong..." rows="2" required id="bug-desc"></textarea>
+                        <button type="submit" class="btn btn-sm text-left">Submit Bug Report</button>
+                    </form>
+                    <div id="bug-feedback" class="success-text hidden">Thank you! Bug successfully stored in database tracking system.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Master Diagnostic Quiz Section -->
+        <section id="diagnostic-page" class="page-section">
+            <div class="card quiz-card">
+                <div class="quiz-header">
+                    <h2>Master Diagnostic Quiz</h2>
+                    <span class="diagnostic-tag">Level Assessment</span>
+                </div>
+                <p class="diagnostic-intro" id="diag-intro-text">This diagnostic evaluation tests multiple math domains to automatically recommend the ideal math mission based on your performance strengths!</p>
+                <div id="diagnostic-box">
+                    <p class="question-text" id="diag-text">Ready to assess your level?</p>
+                    <div class="options-container" id="diag-options">
+                        <!-- Dynamic assessment buttons -->
+                    </div>
+                </div>
+                <button id="diag-start-btn" class="btn btn-full" onclick="startDiagnostic()">Begin Master Evaluation 🚀</button>
+            </div>
+        </section>
+
+        <!-- 4. Quiz Categories Dashboard -->
+        <section id="quizzes-page" class="page-section">
+            <div class="dashboard-header">
+                <h2>Select a Math Mission</h2>
+                <div id="recommendation-banner" class="rec-banner hidden">💡 System Recommendation: Based on your diagnostic, we highly recommend trying out the <strong id="rec-target">Addition</strong> category!</div>
+                <div id="score-vault" class="score-vault">
+                    <strong>Logged Session User:</strong> <span id="user-display">Student</span>
+                    <div id="saved-scores-list"></div>
+                </div>
+            </div>
+            <div class="quiz-grid" id="category-grid">
+                <!-- Injected via script.js -->
+            </div>
+        </section>
+
+        <!-- 5. Quiz Gameplay Box -->
+        <section id="gameplay-page" class="page-section">
+            <div class="card quiz-card">
+                <div class="quiz-header">
+                    <h2 id="current-quiz-title">Category</h2>
+                    <div class="timer-box">⏰ <span id="timer-display">03:00</span></div>
+                </div>
+                <div class="quiz-status">
+                    <span id="progress-tracker">Question 1 of 7</span>
+                </div>
+                <div id="question-box">
+                    <p class="question-text" id="question-text">Loading...</p>
+                    <div class="options-container" id="options-container"></div>
+                </div>
+                <button id="next-btn" class="btn hidden" onclick="advanceQuiz()">Next Question ➡️</button>
+            </div>
+        </section>
+
+        <!-- 6. Score Results Section -->
+        <section id="results-page" class="page-section">
+            <div class="card results-card text-center">
+                <h2>Mission Complete! 🎓</h2>
+                <div class="score-display"><span id="final-score">0</span> / 7</div>
+                <p id="performance-msg">Great job practicing your math skills!</p>
+                <button class="btn btn-large" onclick="showPage('quizzes')">Return to Dashboard</button>
+            </div>
+        </section>
+
+        <!-- 7. About Us Section -->
+        <section id="about-page" class="page-section">
+            <div class="card content-box text-center">
+                <h2>About Us</h2>
+                <p>Welcome to <strong>MathQuest</strong>! Developed as a core fulfillment requirement for CSCI225, this platform blends robust JavaScript data logic arrays with friendly, responsive interfaces engineered for young learners.</p>
+                <p>Our curriculum randomizes 70 curated challenges across 10 specialized categories, optimizing information retention metrics for primary grade levels.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Review Video Modal Window -->
+    <div id="video-modal" class="modal hidden">
+        <div class="modal-content pop-in">
+            <h3>Let's Review This Concept! 💡</h3>
+            <p>Don't worry, mistakes help us learn! Watch this visual math breakdown lesson before moving forward.</p>
+            <div class="video-container">
+                <iframe id="review-iframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <button class="btn modal-close-btn" onclick="closeVideoModal()">I'm Ready, Let's Continue! 👍</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
