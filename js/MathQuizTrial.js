@@ -1,28 +1,14 @@
 
-/* =========================================
-   ELIMINT - QUIZ JAVASCRIPT
-   File: script.js
-
-   Features:
-   - 10 topic quizzes (7 questions each)
-   - Master Quiz (10 questions)
-   - Two-minute timer
-   - Automatic submission
-   - Score calculation and answer review
-   - Practice recommendations
-   - Guest mode and Firebase support
-========================================= */
+/* ELIMINT - QUIZ JAVASCRIPT */
 
 import {
     getCurrentUser,
     signInWithGoogle,
     signOutUser,
     saveQuizScore
-} from "./firebase.js";
+} from "./MathQuizTrialFirebase.js";
 
-/* =========================================
-   1. QUIZ QUESTIONS
-========================================= */
+/* 1. QUIZ QUESTIONS */
 
 const topics = [
     {
@@ -177,9 +163,7 @@ const topics = [
     }
 ];
 
-/* =========================================
-   2. ELEMENT REFERENCES
-========================================= */
+/* 2. ELEMENT REFERENCES */
 
 const elements = {
     userStatus: document.getElementById("user-status"),
@@ -213,9 +197,7 @@ const elements = {
     toast: document.getElementById("toast")
 };
 
-/* =========================================
-   3. QUIZ STATE
-========================================= */
+/* 3. QUIZ STATE */
 
 let currentQuestions = [];
 let currentAnswers = [];
@@ -227,9 +209,7 @@ let timerInterval = null;
 let currentUser = null;
 let quizFinished = false;
 
-/* =========================================
-   4. HELPER FUNCTIONS
-========================================= */
+/* 4. HELPER FUNCTIONS */
 
 function shuffleArray(array) {
     const shuffled = [...array];
@@ -271,9 +251,7 @@ function showSection(sectionToShow) {
     }
 }
 
-/* =========================================
-   5. CREATE TOPIC CARDS
-========================================= */
+/* 5. CREATE TOPIC CARDS */
 
 function createTopicCards() {
     if (!elements.topicGrid) return;
@@ -305,9 +283,7 @@ function createTopicCards() {
     });
 }
 
-/* =========================================
-   6. START A QUIZ
-========================================= */
+/* 6. START A QUIZ */
 
 function startTopicQuiz(topicId) {
     const topic = topics.find(item => item.id === topicId);
@@ -365,9 +341,7 @@ function beginQuiz() {
     });
 }
 
-/* =========================================
-   7. DISPLAY QUESTIONS
-========================================= */
+/* 7. DISPLAY QUESTIONS */
 
 function renderQuestion() {
     const question = currentQuestions[currentIndex];
@@ -439,9 +413,7 @@ function selectAnswer(answerIndex) {
     });
 }
 
-/* =========================================
-   8. QUESTION NAVIGATION
-========================================= */
+/* 8. QUESTION NAVIGATION */
 
 function goToPreviousQuestion() {
     if (currentIndex > 0) {
@@ -457,9 +429,7 @@ function goToNextQuestion() {
     }
 }
 
-/* =========================================
-   9. TIMER
-========================================= */
+/* 9. TIMER */
 
 function startTimer() {
     clearInterval(timerInterval);
@@ -492,9 +462,7 @@ function updateTimerDisplay() {
     );
 }
 
-/* =========================================
-   10. SUBMIT AND SCORE QUIZ
-========================================= */
+/* 10. SUBMIT AND SCORE QUIZ */
 
 function finishQuiz(timeExpired = false) {
     if (quizFinished) return;
@@ -516,35 +484,45 @@ function finishQuiz(timeExpired = false) {
     saveResult(correct, total, percentage);
 }
 
+
 function displayResults(correct, total, percentage, timeExpired) {
-    const scoreElement = document.querySelector("#results-area .score");
-    const heading = document.querySelector("#results-area .results-heading");
+    const scoreElement = document.getElementById("score-number");
+    const heading = document.getElementById("result-title");
+    const message = document.getElementById("result-message");
+    const emoji = document.getElementById("result-emoji");
 
     if (heading) {
-        heading.innerHTML = `
-            <h2>${percentage >= 70 ? "Great Job!" : "Keep Practicing!"}</h2>
-            <p>${timeExpired ? "Your time ran out. Here are your results." : "You completed your quiz!"}</p>
-        `;
+        heading.textContent =
+            percentage >= 70 ? "Great Job!" : "Keep Practicing!";
+    }
+
+    if (message) {
+        message.textContent = timeExpired
+            ? "Your time ran out. Here are your results."
+            : "You completed your quiz!";
     }
 
     if (scoreElement) {
         scoreElement.textContent = `${correct}/${total}`;
     }
 
+    if (emoji) {
+        emoji.textContent =
+            percentage === 100 ? "🏆" :
+            percentage >= 70 ? "🎉" : "💪";
+    }
+
     if (elements.recommendations) {
-        elements.recommendations.innerHTML =
-            createRecommendations(percentage);
+        elements.recommendations.innerHTML = createRecommendations(percentage);
     }
 
     if (elements.answerReview) {
-        elements.answerReview.innerHTML =
-            createAnswerReview();
+        elements.answerReview.innerHTML = createAnswerReview();
     }
 }
 
-/* =========================================
-   11. RECOMMENDATIONS
-========================================= */
+
+/* 11. RECOMMENDATIONS */
 
 function createRecommendations(percentage) {
     let message = "";
@@ -576,9 +554,7 @@ function createRecommendations(percentage) {
     return `<p>${message}</p>`;
 }
 
-/* =========================================
-   12. ANSWER REVIEW
-========================================= */
+/* 12. ANSWER REVIEW */
 
 function createAnswerReview() {
     return currentQuestions.map((question, index) => {
@@ -612,9 +588,7 @@ function createAnswerReview() {
     }).join("");
 }
 
-/* =========================================
-   13. SAVE QUIZ SCORE
-========================================= */
+/* 13. SAVE QUIZ SCORE */
 
 async function saveResult(correct, total, percentage) {
     if (!elements.saveStatus) return;
@@ -645,9 +619,7 @@ async function saveResult(correct, total, percentage) {
     }
 }
 
-/* =========================================
-   14. RETRY AND RETURN TO TOPICS
-========================================= */
+/* 14. RETRY AND RETURN TO TOPICS */
 
 function retryQuiz() {
     if (currentQuizId === "master") {
@@ -668,9 +640,7 @@ function returnToTopics() {
     });
 }
 
-/* =========================================
-   15. GOOGLE SIGN-IN
-========================================= */
+/* 15. GOOGLE SIGN-IN */
 
 async function handleSignIn() {
     try {
@@ -721,9 +691,7 @@ async function updateUserStatus() {
     }
 }
 
-/* =========================================
-   16. EVENT LISTENERS
-========================================= */
+/* 16. EVENT LISTENERS */
 
 elements.startMaster?.addEventListener("click", startMasterQuiz);
 
@@ -757,9 +725,7 @@ elements.signIn?.addEventListener("click", handleSignIn);
 
 elements.signOut?.addEventListener("click", handleSignOut);
 
-/* =========================================
-   17. INITIALIZE WEBSITE
-========================================= */
+/* 17. INITIALIZE WEBSITE */
 
 function initializeElimint() {
     createTopicCards();
@@ -768,7 +734,3 @@ function initializeElimint() {
 }
 
 initializeElimint();
-
-/* =========================================
-   END OF ELIMINT SCRIPT
-========================================= */
