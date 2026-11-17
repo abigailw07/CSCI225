@@ -1,0 +1,40 @@
+
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /quizScores/{scoreId} {
+
+      // Allow users to save their own quiz scores.
+      allow create: if request.auth != null
+        && request.resource.data.userId == request.auth.uid
+        && request.resource.data.keys().hasAll([
+          'userId',
+          'userName',
+          'userEmail',
+          'quizId',
+          'quizTitle',
+          'correct',
+          'total',
+          'percentage',
+          'completedAt'
+        ])
+        && request.resource.data.correct is int
+        && request.resource.data.total is int
+        && request.resource.data.percentage is int
+        && request.resource.data.correct >= 0
+        && request.resource.data.total > 0
+        && request.resource.data.correct <= request.resource.data.total
+        && request.resource.data.percentage >= 0
+        && request.resource.data.percentage <= 100;
+
+      // Users can only read their own scores.
+      allow read: if request.auth != null
+        && resource.data.userId == request.auth.uid;
+
+      // Prevent editing or deleting saved scores.
+      allow update, delete: if false;
+    }
+  }
+}

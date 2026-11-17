@@ -1,0 +1,624 @@
+
+/* =========================================
+   ELIMINT - MAIN STYLESHEET
+   File: style.css
+========================================= */
+
+/* ---------- GENERAL RESET ---------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Poppins", Arial, sans-serif;
+    background-color: #f5f7ff;
+    color: #263238;
+    line-height: 1.6;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ---------- COLOR VARIABLES ---------- */
+
+:root {
+    --primary: #6254d9;
+    --primary-dark: #493bb5;
+    --secondary: #ffb84d;
+    --success: #39b982;
+    --danger: #ed6b6b;
+    --light: #ffffff;
+    --background: #f5f7ff;
+    --text: #263238;
+    --muted: #718096;
+    --border: #e4e7f0;
+    --shadow: 0 8px 25px rgba(40, 45, 90, 0.09);
+}
+
+/* ---------- HEADER ---------- */
+
+.site-header {
+    width: 100%;
+    background-color: var(--light);
+    padding: 16px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--primary);
+    font-size: 1.6rem;
+    font-weight: 800;
+}
+
+.brand-icon {
+    font-size: 1.9rem;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.main-nav a {
+    color: var(--text);
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.main-nav a:hover {
+    color: var(--primary);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-status {
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+/* ---------- BUTTONS ---------- */
+
+.btn {
+    border: none;
+    border-radius: 10px;
+    padding: 11px 20px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    transition: 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+}
+
+.btn-secondary {
+    background-color: var(--secondary);
+    color: #44320f;
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+}
+
+.btn-danger {
+    background-color: var(--danger);
+    color: white;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ---------- MAIN SECTIONS ---------- */
+
+.section {
+    padding: 75px 7%;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-heading h2 {
+    color: var(--primary);
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+.section-heading p {
+    color: var(--muted);
+}
+
+/* ---------- HOME / HERO ---------- */
+
+.hero {
+    min-height: 470px;
+    padding: 75px 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    background: linear-gradient(120deg, #e9e7ff, #fff4df);
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.hero-content h1 {
+    font-size: clamp(2.3rem, 5vw, 3.8rem);
+    line-height: 1.15;
+    color: var(--text);
+    margin-bottom: 20px;
+}
+
+.hero-content h1 span {
+    color: var(--primary);
+}
+
+.hero-content p {
+    color: var(--muted);
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+/* ---------- CALCULATOR ILLUSTRATION ---------- */
+
+.hero-illustration {
+    width: 280px;
+    min-width: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calculator {
+    width: 230px;
+    padding: 22px;
+    border-radius: 25px;
+    background-color: white;
+    box-shadow: var(--shadow);
+    transform: rotate(4deg);
+}
+
+.calculator-top {
+    display: flex;
+    justify-content: space-between;
+    color: var(--primary);
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.calculator-screen {
+    background-color: #edf0ff;
+    border-radius: 12px;
+    padding: 18px;
+    text-align: right;
+    font-size: 1.7rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.calculator-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 9px;
+}
+
+.calculator-buttons span {
+    background-color: #f0efff;
+    color: var(--primary);
+    text-align: center;
+    padding: 12px;
+    border-radius: 9px;
+    font-weight: 700;
+}
+
+/* ---------- QUIZ SECTION ---------- */
+
+.quiz-section {
+    background-color: var(--background);
+}
+
+.quiz-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 22px;
+}
+
+.quiz-card,
+.master-card {
+    background-color: white;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.quiz-card:hover,
+.master-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(40, 45, 90, 0.14);
+}
+
+.quiz-card h3,
+.master-card h3 {
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.quiz-card p,
+.master-card p {
+    color: var(--muted);
+    margin-bottom: 18px;
+}
+
+.quiz-icon {
+    font-size: 2.4rem;
+    margin-bottom: 12px;
+}
+
+.quiz-card .btn,
+.master-card .btn {
+    width: 100%;
+}
+
+/* ---------- MASTER QUIZ ---------- */
+
+.master-card {
+    max-width: 750px;
+    margin: 0 auto 35px;
+    text-align: center;
+    border: 2px solid var(--secondary);
+    background: linear-gradient(135deg, #fff, #fff8e9);
+}
+
+.master-card .quiz-icon {
+    font-size: 3rem;
+}
+
+/* ---------- QUIZ PLAYING AREA ---------- */
+
+.quiz-area {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 35px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+
+.quiz-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.quiz-top h2 {
+    color: var(--primary);
+}
+
+.timer {
+    background-color: #fff0df;
+    color: #a85d00;
+    border-radius: 10px;
+    padding: 10px 17px;
+    font-weight: 800;
+}
+
+.timer.warning {
+    background-color: #ffe3e3;
+    color: var(--danger);
+}
+
+.progress-container {
+    width: 100%;
+    height: 12px;
+    background-color: #e9eaf3;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: var(--success);
+    border-radius: 20px;
+    transition: width 0.3s ease;
+}
+
+.question-container {
+    margin-bottom: 30px;
+}
+
+.question-number {
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.question-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+.answer-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.answer-option {
+    padding: 17px;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    background-color: white;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.answer-option:hover {
+    border-color: var(--primary);
+    background-color: #f5f3ff;
+}
+
+.answer-option.selected {
+    border-color: var(--primary);
+    background-color: #eeecff;
+}
+
+.answer-option.correct {
+    border-color: var(--success);
+    background-color: #e5fff2;
+}
+
+.answer-option.incorrect {
+    border-color: var(--danger);
+    background-color: #fff0f0;
+}
+
+.quiz-feedback {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #f0efff;
+}
+
+.quiz-controls {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+/* ---------- RESULTS ---------- */
+
+.results-area {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 35px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+
+.results-heading {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.results-heading h2 {
+    color: var(--primary);
+    font-size: 2rem;
+}
+
+.score-display {
+    text-align: center;
+    padding: 25px;
+    background-color: #f0efff;
+    border-radius: 15px;
+    margin-bottom: 25px;
+}
+
+.score-display .score {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.recommendations {
+    padding: 20px;
+    background-color: #fff8e9;
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
+
+.answer-review {
+    margin-top: 25px;
+}
+
+.review-item {
+    padding: 15px;
+    border-bottom: 1px solid var(--border);
+}
+
+.review-item.correct {
+    border-left: 5px solid var(--success);
+}
+
+.review-item.incorrect {
+    border-left: 5px solid var(--danger);
+}
+
+/* ---------- ABOUT SECTION ---------- */
+
+.about-section {
+    background-color: white;
+    text-align: center;
+}
+
+.about-content {
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.about-content p {
+    color: var(--muted);
+    margin-bottom: 15px;
+}
+
+/* ---------- FOOTER ---------- */
+
+.site-footer {
+    background-color: #28234f;
+    color: white;
+    padding: 25px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* ---------- TOAST NOTIFICATIONS ---------- */
+
+.toast {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    max-width: 350px;
+    padding: 15px 22px;
+    background-color: #28234f;
+    color: white;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    z-index: 200;
+}
+
+/* ---------- HIDDEN ELEMENTS ---------- */
+
+.hidden {
+    display: none !important;
+}
+
+/* ---------- RESPONSIVE DESIGN ---------- */
+
+@media (max-width: 900px) {
+    .site-header {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .main-nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .section {
+        padding: 50px 5%;
+    }
+
+    .main-nav {
+        gap: 13px;
+        font-size: 0.9rem;
+    }
+
+    .header-actions {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .answer-options {
+        grid-template-columns: 1fr;
+    }
+
+    .quiz-area,
+    .results-area {
+        padding: 22px;
+        margin: 20px 5%;
+    }
+
+    .quiz-controls {
+        flex-direction: column;
+    }
+
+    .quiz-controls .btn {
+        width: 100%;
+    }
+
+    .site-footer {
+        flex-direction: column;
+        text-align: center;
+    }
+}
