@@ -22,7 +22,7 @@
     <!-- HEADER AND NAVIGATION -->
     <header class="site-header">
 
-        <a class="brand" href="#home">
+        <a class="brand" href="MathQuizTrial.html">
             <span class="brand-icon">🧮</span>
             Elimint
         </a>
@@ -31,13 +31,16 @@
             <span>Elimint</span>    
             <span>✦</span>
         </div>
-
-        <nav class="main-nav">
-            <a href="#home">Home</a>
-            <a href="#master-quiz">Master Quiz</a>
-            <a href="#quizzes">Quizzes</a>
-            <a href="#about">About Us</a>
-        </nav>
+     
+        
+        <div class="hero-actions">
+            <a href="quizzes.html" class="button button-primary">
+                Start Exploring ➜
+            </a>
+            <a href="aboutMe.html" class="button button-light">
+                Meet Elimint
+            </a>
+        </div>
 
         <!-- Google Account Buttons -->
         <div class="account-area">
@@ -58,12 +61,9 @@
 
 
     <main>
-
         <!-- HOMEPAGE -->
         <section id="home" class="hero section-wrap">
-
             <div class="hero-copy">
-
                 <p class="eyebrow">
                     ⭐ YOUR MATH ADVENTURE STARTS HERE
                 </p>
@@ -81,11 +81,11 @@
 
                 <div class="hero-actions">
 
-                    <a href="#quizzes" class="button button-primary">
+                    <a href="quizzes.html" class="button button-primary">
                         Start Exploring ➜
                     </a>
 
-                    <a href="#about" class="button button-light">
+                    <a href="aboutMe.html" class="button button-light">
                         Meet Elimint
                     </a>
 
@@ -108,19 +108,13 @@
                         <strong>2 min</strong>
                         <span>Per Quiz</span>
                     </div>
-
                 </div>
-
             </div>
-
 
             <!-- Calculator Illustration -->
             <div class="hero-art">
-
                 <div class="art-sun"></div>
-
                 <div class="art-card">
-
                     <div class="calculator-top">
                         <span>Elimint</span>
                         <span>✦</span>
@@ -151,256 +145,18 @@
                         <i>=</i>
                         <i>+</i>
                     </div>
-
                 </div>
 
                 <span class="art-star">★</span>
                 <span class="art-number">123</span>
                 <span class="art-pencil">✏️</span>
-
             </div>
-
         </section>
-
-
-        <!-- QUIZ NAVIGATION PAGE -->
-        <section id="quizzes" class="section-wrap quiz-section">
-
-            <div class="section-heading">
-
-                <p class="eyebrow">
-                    🗺️ CHOOSE YOUR ADVENTURE
-                </p>
-
-                <h2>Pick a Math Mission!</h2>
-
-                <p>
-                    Try the Master Quiz to find out what to practice,
-                    or choose a topic you want to explore.
-                </p>
-
-            </div>
-
-
-            <!-- MASTER QUIZ -->
-            <article id="master-quiz" class="master-card">
-
-                <div class="master-icon">
-                    🏆
-                </div>
-
-                <div class="master-copy">
-
-                    <span class="pill">
-                        DIAGNOSTIC CHALLENGE
-                    </span>
-
-                    <h3>Master Quiz</h3>
-
-                    <p>
-                        Answer 10 mixed questions.
-                        Your results will help you find topics
-                        to practice next.
-                    </p>
-
-                </div>
-
-                <button id="start-master" class="button button-yellow">
-                    Take Master Quiz ➜
-                </button>
-
-            </article>
-
-
-            <!-- TEN QUIZ TOPICS -->
-            <div id="topic-grid" class="topic-grid">
-
-                <!-- JavaScript automatically creates
-                     the 10 individual quiz buttons here. -->
-
-            </div>
-
-        </section>
-
-
-        <!-- QUIZ QUESTION PAGE -->
-        <section id="quiz-area" class="section-wrap quiz-area hidden">
-
-            <div class="quiz-topline">
-
-                <button id="back-to-topics" class="text-button">
-                    ← Back to Topics
-                </button>
-
-                <span id="quiz-kind" class="pill">
-                    TOPIC QUIZ
-                </span>
-
-            </div>
-
-
-            <div class="quiz-panel">
-
-                <div class="quiz-heading">
-
-                    <div>
-
-                        <p class="eyebrow">
-                            🧠 YOU'VE GOT THIS!
-                        </p>
-
-                        <h2 id="quiz-title">
-                            Addition Adventure
-                        </h2>
-
-                    </div>
-
-
-                    <!-- TWO-MINUTE TIMER -->
-                    <div class="timer-box">
-
-                        <span>TIME LEFT</span>
-
-                        <strong id="timer">
-                            02:00
-                        </strong>
-
-                    </div>
-
-                </div>
-
-
-                <!-- QUIZ PROGRESS -->
-                <div class="progress-row">
-
-                    <span id="question-count">
-                        Question 1 of 7
-                    </span>
-
-                    <span id="progress-percent">
-                        14%
-                    </span>
-
-                </div>
-
-
-                <div class="progress-track">
-
-                    <div id="progress-fill" class="progress-fill">
-                    </div>
-
-                </div>
-
-
-                <!-- QUESTIONS AND ANSWERS -->
-                <div id="question-container" class="question-container">
-
-                </div>
-
-
-                <!-- QUIZ BUTTONS -->
-                <div class="quiz-controls">
-
-                    <button id="previous-question" class="button button-light" disabled>
-                        Previous
-                    </button>
-
-                    <button id="next-question" class="button button-primary">
-                        Next Question →
-                    </button>
-
-                    <button id="submit-quiz" class="button button-yellow hidden">
-                        Submit Quiz ✓
-                    </button>
-
-                </div>
-
-
-                <p class="quiz-note">
-                    Your answers are saved as you go.
-                    The quiz will submit automatically when
-                    the timer reaches zero.
-                </p>
-
-            </div>
-
-        </section>
-
-
-        <!-- QUIZ RESULTS PAGE -->
-        <section id="results-area" class="section-wrap results-area hidden">
-
-            <div class="results-card">
-
-                <div id="result-emoji" class="result-emoji">
-                    🎉
-                </div>
-
-                <p class="eyebrow">
-                    MISSION COMPLETE
-                </p>
-
-                <h2 id="result-title">
-                    Great Work!
-                </h2>
-
-                <p id="result-message"></p>
-
-
-                <!-- FINAL SCORE -->
-                <div class="score-circle">
-
-                    <strong id="score-number">
-                        0/7
-                    </strong>
-
-                    <span>YOUR SCORE</span>
-
-                </div>
-
-
-                <!-- RECOMMENDATIONS -->
-                <div id="recommendations" class="recommendations">
-
-                </div>
-
-
-                <!-- CORRECT ANSWERS AND EXPLANATIONS -->
-                <div id="answer-review" class="answer-review">
-
-                </div>
-
-
-                <div class="results-actions">
-
-                    <button id="retry-quiz" class="button button-primary">
-                        Try Again ↻
-                    </button>
-
-                    <a href="#quizzes" id="choose-another" class="button button-light">
-                        Choose Another Quiz
-                    </a>
-
-                </div>
-
-
-                <!-- DATABASE SAVE STATUS -->
-                <p id="save-status" class="save-status">
-                    Guest scores are not saved to the database.
-                </p>
-
-            </div>
-
-        </section>
-
 
         <!-- ABOUT THE PROJECT -->
         <section id="about" class="about-section">
-
             <div class="section-wrap about-inner">
-
                 <div>
-
                     <p class="eyebrow">
                         💡 ABOUT THE PROJECT
                     </p>
@@ -408,12 +164,9 @@
                     <h2>
                         Big brains start with small steps.
                     </h2>
-
                 </div>
 
-
                 <div class="about-copy">
-
                     <p>
                         <strong>Elimint</strong> is a web-based
                         arithmetic quiz project designed to make
@@ -450,25 +203,19 @@
                         This project uses HTML, CSS, JavaScript,
                         Firebase Authentication, and Cloud Firestore.
                     </p>
-
                 </div>
-
             </div>
-
         </section>
-
     </main>
 
 
     <!-- FOOTER -->
     <footer class="site-footer">
-
         <span>🧮 Elimint</span>
 
         <span>
             Keep learning. Keep growing. Keep having fun!
         </span>
-
     </footer>
 
 
@@ -480,6 +227,5 @@
 
     <!-- JAVASCRIPT -->
     <script type="module" src="js/MathQuizTrial.js"></script>
-
 </body>
 </html>

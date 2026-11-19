@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elimint | Master Quiz</title>
+
+    <link rel="stylesheet" href="css/MathQuizTrial.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <a class="brand" href="MathQuizTrial.html">Elimint</a>
+
+        <nav class="main-nav">
+            <a href="MathQuizTrial.html">Home</a>
+            <a href="master-quiz.html">Master Quiz</a>
+            <a href="quizzes.html">Quizzes</a>
+            <a href="aboutMe.html">About Us</a>
+        </nav>
+
+        <div class="account-controls">
+            <span id="user-status">Guest</span>
+            <button id="google-signin">Sign In</button>
+            <button id="google-signout" hidden>Sign Out</button>
+        </div>
+    </header>
+
+    <main>
+        <section id="master-quiz-intro" class="section">
+            <div class="section-heading">
+                <p class="eyebrow">The ultimate challenge</p>
+                <h1>Master Quiz</h1>
+                <p>Test your knowledge with 10 randomly selected questions from all math topics.</p>
+
+                <button id="start-master" class="button button-primary">
+                    Start Master Quiz
+                </button>
+            </div>
+        </section>
+
+        <!-- QUIZ QUESTION PAGE -->
+        <section id="quiz-area" class="section-wrap quiz-area hidden">
+            <div class="quiz-topline">
+                <button id="back-to-topics" class="text-button">
+                    ← Back to Master Quiz
+                </button>
+
+                <span id="quiz-kind" class="pill">
+                    TOPIC QUIZ
+                </span>
+            </div>
+
+            <div class="quiz-panel">
+                <div class="quiz-heading">
+                    <div>
+                        <p class="eyebrow">
+                            🧠 YOU'VE GOT THIS!
+                        </p>
+
+                        <h2 id="quiz-title">
+                            Addition Adventure
+                        </h2>
+                    </div>
+
+                    <!-- TWO-MINUTE TIMER -->
+                    <div class="timer-box">
+                        <span>TIME LEFT</span>
+
+                        <strong id="timer">
+                            02:00
+                        </strong>
+                    </div>
+                </div>
+
+                <!-- QUIZ PROGRESS -->
+                <div class="progress-row">
+                    <span id="question-count">
+                        Question 1 of 7
+                    </span>
+
+                    <span id="progress-percent">
+                        14%
+                    </span>
+                </div>
+
+                <div class="progress-track">
+                    <div id="progress-fill" class="progress-fill">
+                    </div>
+                </div>
+
+                <!-- QUESTIONS AND ANSWERS -->
+                <div id="question-container" class="question-container">
+
+                </div>
+
+                <!-- QUIZ BUTTONS -->
+                <div class="quiz-controls">
+                    <button id="previous-question" class="button button-light" disabled>
+                        Previous
+                    </button>
+
+                    <button id="next-question" class="button button-primary">
+                        Next Question →
+                    </button>
+
+                    <button id="submit-quiz" class="button button-yellow">
+                        Submit Quiz ✓
+                    </button>
+                </div>
+
+                <p class="quiz-note">
+                    Your answers are saved as you go.
+                    The quiz will submit automatically when
+                    the timer reaches zero.
+                </p>
+            </div>
+        </section>
+
+        <!-- QUIZ RESULTS PAGE -->
+        <section id="results-area" class="section-wrap results-area hidden">
+            <div class="results-card">
+                <div id="result-emoji" class="result-emoji">
+                    🎉
+                </div>
+
+                <p class="eyebrow">
+                    MISSION COMPLETE
+                </p>
+
+                <h2 id="result-title">
+                    Great Work!
+                </h2>
+
+                <p id="result-message"></p>
+
+                <!-- FINAL SCORE -->
+                <div class="score-circle">
+                    <strong id="score-number">
+                        0/7
+                    </strong>
+
+                    <span>YOUR SCORE</span>
+                </div>
+
+                <!-- RECOMMENDATIONS -->
+                <div id="recommendations" class="recommendations">
+
+                </div>
+
+                <!-- CORRECT ANSWERS AND EXPLANATIONS -->
+                <div id="answer-review" class="answer-review">
+
+                </div>
+
+                <div class="results-actions">
+                    <button id="retry-quiz" class="button button-primary">
+                        Try Again ↻
+                    </button>
+
+                    <a href="quizzes.html" id="choose-another" class="button button-light">
+                        Choose Another Quiz
+                    </a>
+                </div>
+
+                <!-- DATABASE SAVE STATUS -->
+                <p id="save-status" class="save-status">
+                    Guest scores are not saved to the database.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Elimint. Learn, Play, Level Up!</p>
+    </footer>
+
+    <div id="toast"></div>
+
+    <script type="module" src="js/MathQuizTrial.js"></script>
+
+</body>
+</html>

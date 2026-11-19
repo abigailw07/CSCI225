@@ -171,6 +171,7 @@ const elements = {
     signOut: document.getElementById("google-signout"),
 
     startMaster: document.getElementById("start-master"),
+    masterIntro: document.getElementById("master-quiz-intro"),
     topicGrid: document.getElementById("topic-grid"),
 
     quizArea: document.getElementById("quiz-area"),
@@ -234,20 +235,30 @@ function showToast(message) {
 }
 
 function showSection(sectionToShow) {
-    elements.quizArea.classList.add("hidden");
-    elements.resultsArea.classList.add("hidden");
+    // Hide the quiz and results screens.
+    elements.quizArea?.classList.add("hidden");
+    elements.resultsArea?.classList.add("hidden");
+
+    // Hide both introduction screens.
+    elements.topicGrid?.closest("#quizzes")?.classList.add("hidden");
+    elements.masterIntro?.classList.add("hidden");
 
     if (sectionToShow === "quiz") {
-        elements.quizArea.classList.remove("hidden");
+        elements.quizArea?.classList.remove("hidden");
     }
 
     if (sectionToShow === "results") {
-        elements.resultsArea.classList.remove("hidden");
+        elements.resultsArea?.classList.remove("hidden");
     }
 
     if (sectionToShow === "topics") {
-        elements.quizArea.classList.add("hidden");
-        elements.resultsArea.classList.add("hidden");
+        if (elements.topicGrid) {
+            elements.topicGrid.closest("#quizzes")?.classList.remove("hidden");
+        }
+
+        if (elements.masterIntro) {
+            elements.masterIntro.classList.remove("hidden");
+        }
     }
 }
 
@@ -336,7 +347,11 @@ function beginQuiz() {
     updateTimerDisplay();
     startTimer();
 
-    document.getElementById("quizzes")?.scrollIntoView({
+    const quizPageSection = elements.topicGrid
+        ? document.getElementById("quizzes")
+        : elements.masterIntro;
+
+    quizPageSection?.scrollIntoView({
         behavior: "smooth"
     });
 }
@@ -635,7 +650,11 @@ function returnToTopics() {
 
     showSection("topics");
 
-    document.getElementById("quizzes")?.scrollIntoView({
+    const returnSection = elements.topicGrid
+        ? document.getElementById("quizzes")
+        : elements.masterIntro;
+
+    returnSection?.scrollIntoView({
         behavior: "smooth"
     });
 }
@@ -669,13 +688,16 @@ async function updateUserStatus() {
         currentUser = await getCurrentUser();
 
         if (currentUser) {
-            elements.userStatus.textContent =
-                `Signed in: ${currentUser.displayName || currentUser.email}`;
-
+            if(elements.userStatus){
+                elements.userStatus.textContent = `Signed in: ${currentUser.displayName || currentUser.email}`;
+            }
+            
             elements.signIn?.classList.add("hidden");
             elements.signOut?.classList.remove("hidden");
         } else {
-            elements.userStatus.textContent = "Playing as Guest";
+            if(elements.userStatus){
+                elements.userStatus.textContent = "Playing as Guest";
+            }
 
             elements.signIn?.classList.remove("hidden");
             elements.signOut?.classList.add("hidden");
@@ -728,9 +750,18 @@ elements.signOut?.addEventListener("click", handleSignOut);
 /* 17. INITIALIZE WEBSITE */
 
 function initializeElimint() {
-    createTopicCards();
-    showSection("topics");
+    // Update Google sign-in status on every page
     updateUserStatus();
-}
 
+    // Individual quiz pages
+    if (elements.topicGrid) {
+        createTopicCards();
+        showSection("topics");
+    }
+    // Master quiz page
+    if (elements.startMaster) {
+        elements.quizArea?.classList.add("hidden");
+        elements.resultsArea?.classList.add("hidden");
+    }
+}
 initializeElimint();
